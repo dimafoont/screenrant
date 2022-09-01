@@ -91,7 +91,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'landscapeDB',
+            'NAME': 'landscapedb',
             'USER': 'landscapeuser',
             'PASSWORD': 'foont160395',
             'HOST': 'localhost',
