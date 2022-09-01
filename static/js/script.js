@@ -140,22 +140,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-//AJAX PAGINATION
-
-// $.ajax({
-//     type: 'GET',
-//     url: '/posts-json/',
-//     success: function (response) {
-//         // console.log(response.data)
-//         const data = response.data
-//         data.map(post=> {
-//             console.log(post.id)
-//         })
-//     },
-//     error: function (error) {
-//         console.log(error)
-//     }
-// })
 
 //OTHER
 
@@ -175,11 +159,22 @@ if (firstLi) {
 }
 
 const postInfo = document.querySelector('.post-info');
-    if (document.querySelector('.post-content')) {
-        if (!postInfo) {
-            document.querySelector('.post-content').style.flex = '0 0 100%'
-            const p = document.querySelectorAll('.post-content > p').forEach(el => {
-                el.style.fontSize = '1rem'
-            })
-        }
+if (document.querySelector('.post-content')) {
+    if (!postInfo) {
+        document.querySelector('.post-content').style.flex = '0 0 100%'
+        const p = document.querySelectorAll('.post-content > p').forEach(el => {
+            el.style.fontSize = '1rem'
+        })
     }
+}
+
+const mainTitle = document.querySelector('.main-title');
+if (document.querySelector('.main-blog')) {
+    if (!mainTitle && innerWidth > 600) {
+        const p = document.querySelectorAll('.main-blog-img > img').forEach(el => {
+            el.style.maxHeight = '214px'
+        })
+    }
+}
+
+
