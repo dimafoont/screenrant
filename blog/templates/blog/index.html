@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}} {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    {% include 'inc/_relevant.html' %}
+    <div class="main-content">
+        <section class="main-content-page">
+            <h5 class="title-block">
+                The latest
+            </h5>
+            <ul class="main-blog">
+                {% for post in posts %}
+                <li>
+                    <a href="{{ post.get_absolute_url }}">
+                        <div class="main-blog-img">
+                            {% if post.photo %}
+                            <img src="{{ post.photo.url }}" alt="img">
+                            {% else %}
+                            <img src="img/img5.webp" alt="img">
+                            {% endif %}
+                        </div>
+                        <div class="main-blog-content">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.content|truncatewords_html:15|safe }}</p>
+                            <span class="date">{{ post.created_at|date:"F j, Y"}}</span>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+
+                {{total_obj|json_script:"json-total"}}
+            </ul>
+
+            <div class="ajax-navigation">
+                <a class="load-more">Show more</a>
+                <div id="circle2" class="not-visible">
+                </div>
+                <p class="no-more not-visible">No more posts</p>
+            </div>
+        </section>
+        {% include 'inc/_aside.html'%}
+    </div>
+    <script>
+        const loadBtn = document.querySelector('.load-more');
+        const spinner = document.querySelector('#circle2');
+        const total = JSON.parse(document.getElementById('json-total').textContent);
+        const noMore = document.querySelector('.no-more');
+        const ajaxNavBlock = document.querySelector('.ajax-navigation');
+
+        function loadmorePost() {
+            var _current_item = $('ul.main-blog li').length
+            const content_container = document.querySelector('ul.main-blog')
+            var dateOptions = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                timezone: 'UTC',
+
+            };
+            $.ajax({
+                url: '{% url "load" %}',
+                type: 'GET',
+                data: {
+                    'total_item': _current_item
+                },
+                beforeSend: function () {
+                    loadBtn.classList.add('not-visible');
+                    spinner.classList.remove('not-visible');
+                },
+                success: function (response) {
+                    const data = response.posts
+                    spinner.classList.add('not-visible');
+                    var resolution = '214px';
+                    if (innerWidth <= 600) {
+                        resolution ='none'
+                    }
+                    data.map(post => {
+                        var date = new Date(`${post.created_at}`)
+                        content_container.innerHTML += `<li><a href="/post/${post.slug}/">
+                        <div class="main-blog-img">
+
+                            <img style="max-height: ${resolution}" src="/media/${post.photo}" alt="img">
+
+                        </div>
+                        <div class="main-blog-content">
+                            <h2>${post.title}</h2>
+                            <p >${post.content.substr(0, 100)} …
+                            </p>
+                            <span class="date">${date.toLocaleString("en-US", dateOptions)}</span>
+                        </div>
+                    </a></li>`
+                    });
+                },
+                complete: function () {
+                    if (_current_item >= total - 5) {
+                        noMore.classList.remove('not-visible');
+                        ajaxNavBlock.style.background = '#fff';
+                    } else {
+                        loadBtn.classList.remove('not-visible');
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+
+        loadBtn.addEventListener('click', () => {
+            loadmorePost()
+        })
+    </script>
+</div>
+
+{% endblock %}

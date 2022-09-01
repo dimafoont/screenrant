@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}} {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <ul class="breadcrumbs">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <span><i class="bi bi-chevron-right"></i></span>
+            <li>{{ post.title }}</li>
+    </ul>
+    <a class="category" href="{{ post.category.get_absolute_url }}">{{post.category}}</a>
+    <h1>{{ post.title }}</h1>
+    <div class="main-content">
+        <section class="main-content-page">
+            <ul class="main-blog">
+                <img class="thumbnail" src="{{post.photo.url}}" alt="img">
+                    <div class="main-blog-detail">
+                        <div class="post-info">
+                            <p class="post-date"><strong>Published on </strong><br>{{ post.created_at|date:"F j, Y"}}</p>
+                            {% if next %}
+                            <div class="next">
+                                <a href="{{ next.get_absolute_url }}">
+                                    <h5 class="title-block">Up next</h5>
+                                    <img src="{{ next.photo.url }}" alt="img">
+                                    <h3>{{ next.title }}</h3>
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="post-content">
+                            {{post.content|safe}}
+                        </div>
+                    </div>
+                    {% if posts %}
+                    <h5 class="title-block-long">
+                        You may also like
+                    </h5>
+                {% for post in posts %}
+                <li>
+                    <a href="{{ post.get_absolute_url }}">
+                        <div class="main-blog-img">
+                            {% if post.photo %}
+                            <img src="{{ post.photo.url }}" alt="img">
+                            {% else %}
+                            <img src="img/img5.webp" alt="img">
+                            {% endif %}
+                        </div>
+                        <div class="main-blog-content">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.content|truncatewords_html:15|safe }}</p>
+                            <span class="date">{{ post.created_at|date:"F j, Y"}}</span>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        </section>
+        {% include 'inc/_aside.html'%}
+    </div>
+</div>
+
+{% endblock %}

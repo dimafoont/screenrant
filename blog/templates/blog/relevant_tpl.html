@@ -1,0 +1,31 @@
+<section class="main-relevant">
+    <a class="big" href="{{ post1.get_absolute_url }}">
+        <img src="{{ post1.photo.url }}" alt="img">
+        <h2>{{ post1.title }}</h2>
+        <p>{{ post1.content|truncatewords_html:15|safe }}</p>
+    </a>
+    <div class="additional">
+        <a href="{{ post2.get_absolute_url }}">
+            <div class="additional-header">
+                <h2>{{ post2.title }}</h2>
+                <p>{{ post2.content|truncatewords_html:10|safe }}</p>
+            </div>
+            <div class="additional-img">
+                <img src="{{ post2.photo.url }}" alt="img">
+            </div>
+        </a>
+        <a href="{{ post3.get_absolute_url }}">
+            <div class="additional-header">
+                <h2>{{ post3.title }}</h2>
+                <p>{{ post3.content|truncatewords_html:10|safe }}</p>
+            </div>
+            <div class="additional-img">
+                <img src="{{ post3.photo.url }}" alt="img">
+            </div>
+        </a>
+        <div class="without-img">
+            <a href="{{ post4.get_absolute_url }}">{{ post4.title }}</a>
+            <a href="{{ post5.get_absolute_url }}">{{ post5.title }}</a>
+        </div>
+    </div>
+</section>

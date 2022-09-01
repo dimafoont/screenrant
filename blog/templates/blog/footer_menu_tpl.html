@@ -1,0 +1,5 @@
+<ul>
+    {% for page in singlePages %}
+    <li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+    {% endfor %}
+</ul>

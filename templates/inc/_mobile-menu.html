@@ -1,0 +1,23 @@
+{% load static %}
+{% load menu %}
+<div class="offcanvas">
+    <div class="offcanvas-menu">
+        <div class="offcanvas-header">
+            <a href="{% url 'home' %}"><img src="{% static 'img/logo.webp' %}" alt="logo"></a>
+            <span class="mobile-close"><i class="bi bi-x"></i></span>
+        </div>
+        <div class="offcanvas-inner">
+            {% show_menu_mobile %}
+
+        </div>
+    </div>
+</div><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
