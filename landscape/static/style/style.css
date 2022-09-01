@@ -1142,6 +1142,11 @@ footer {
     margin-top: 0px;
 }
 
+.post-content img {
+    width:100% !important;
+    height: auto !important;
+}
+
 .title-block-long {
     font-family: "Segoe UI", sans-serif;
     font-size: 0.875rem;
