@@ -380,7 +380,7 @@ header {
     transition: 0.4s;
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 208px);
+    min-height:100vh;
 }
 
 .mobile-nav {
