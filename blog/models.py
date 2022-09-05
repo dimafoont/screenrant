@@ -3,11 +3,9 @@ from django.urls import reverse_lazy
 from mptt.models import MPTTModel, TreeForeignKey
 
 class Category(MPTTModel):
-    id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, verbose_name='Url', unique=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Published on')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Updated')
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 
     def __str__(self):
@@ -26,10 +24,12 @@ class Category(MPTTModel):
 
 
 class Post(models.Model):
+    id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, verbose_name='Url', unique=True)
     content = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Published on')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Updated', null=True)
     photo = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
     views = models.IntegerField(default=0, verbose_name='Views')
     category = TreeForeignKey(Category, on_delete=models.PROTECT, related_name='posts')
