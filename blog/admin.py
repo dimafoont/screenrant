@@ -28,7 +28,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
     list_editable = ('created_at',)
     list_filter = ('category',)
-    readonly_fields = ('views', 'created_at', 'get_photo')
+    readonly_fields = ('views', 'get_photo')
     fields = ('title', 'slug', 'category', 'content', 'photo', 'get_photo', 'views', 'created_at',)
 
     def get_photo(self, obj):
