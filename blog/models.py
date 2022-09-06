@@ -24,7 +24,6 @@ class Category(MPTTModel):
 
 
 class Post(models.Model):
-    id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, verbose_name='Url', unique=True)
     content = models.TextField(blank=True)
