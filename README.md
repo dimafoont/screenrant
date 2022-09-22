@@ -1,2 +1,0 @@
-# landscapeinsight
-django blog project 

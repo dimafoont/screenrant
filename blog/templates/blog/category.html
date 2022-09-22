@@ -3,14 +3,18 @@
 {% block title %} {{ title }} {% endblock %}
 
 {% block content %}
-
+<div class="container-relevant">
+    <div class="relevant-wrapper">
+        <h1 class="cat-title">{{ title }}</h1>
+        <p class="listing-desc">The latest {{ title }} on the Screen Rant</p>
+    </div>
+</div>
 <div class="container">
     <div class="main-content">
         <section class="main-content-page">
             <h5 class="title-block">
-                Browsing category
+                Latest
             </h5>
-            <h1 class="main-title">{{ title }}</h1>
             <ul class="main-blog">
                 {% for post in posts %}
                 <li>

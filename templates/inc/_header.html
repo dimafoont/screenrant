@@ -1,29 +1,19 @@
 {% load static %}
 {% load menu %}
 <header>
-    <div class="logo"><a href=""><img src="{% static 'img/logo.webp' %}" alt="logo"></a></div>
+
     <div class="navbar">
         <div class="navbar-content">
-            <button class="mobile-button">
-                <i class="bi bi-list"></i>
-            </button>
+            <div class="logo"><a href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a></div>
 
             {% show_menu %}
 
-            <div class="mobile-logo"><a href="{% url 'home' %}"><img src="{% static 'img/logo.webp' %}" alt="logo"></a></div>
-            <button class="search-button" type="button"><i class="bi bi-search"></i></button>
-        </div>
-    </div>
-    <div class="search-bar">
-        <div class="search-bar-content">
-            <div class="search-form">
-                <form action="{% url 'search' %}" method="get">
-                    <input type="text" name="s" placeholder="Enter your search topic" autocomplete="off">
-                    <button class="search-submit" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
-                <span class="search-close"><i class="bi bi-x"></i></span>
+            <div class="mobile-logo"><a href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a></div>
+            <div class="buttons">
+                <button class="search-button" type="button"><i class="bi bi-search"></i></button>
+                <button class="mobile-button">
+                    <i class="bi bi-list"></i>
+                </button>
             </div>
         </div>
     </div>

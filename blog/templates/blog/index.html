@@ -3,13 +3,17 @@
 {% block title %} {{block.super}} {% endblock %}
 
 {% block content %}
-
+<div class="container-relevant">
+    <div class="relevant-wrapper">
+        <h1>THE #1 MOVIE & TV NEWS WEBSITE</h1>
+        {% include 'inc/_relevant.html' %}
+    </div>
+</div>
 <div class="container">
-    {% include 'inc/_relevant.html' %}
     <div class="main-content">
         <section class="main-content-page">
             <h5 class="title-block">
-                The latest
+                latest
             </h5>
             <ul class="main-blog">
                 {% for post in posts %}
@@ -23,6 +27,9 @@
                             {% endif %}
                         </div>
                         <div class="main-blog-content">
+                            <object>
+                                <a class="link-cat" href="{{ post.category.get_absolute_url }}">{{ post.category }}</a>
+                            </object>
                             <h2>{{ post.title }}</h2>
                             <p>{{ post.content|truncatewords_html:15|safe }}</p>
                             <span class="date">{{ post.created_at|date:"F j, Y"}}</span>

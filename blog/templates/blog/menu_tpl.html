@@ -1,6 +1,5 @@
 {% load mptt_tags %}
 <ul class="nav">
-    <li><a href="{% url 'home' %}">Home</a></li>
     {% recursetree categories %}
     <li>
         <a href="{{ node.get_absolute_url }}">{{ node.title }}</a>
@@ -12,5 +11,4 @@
         {% endif %}
     </li>
     {% endrecursetree %}
-    <li><a href="/about">About</a></li>
 </ul>

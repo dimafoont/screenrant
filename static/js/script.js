@@ -2,18 +2,19 @@
 const searchButton = document.querySelector('.search-button');
 const searchBar = document.querySelector('.search-bar');
 const searchClose = document.querySelector('.search-close');
+const searchOverlay = document.querySelector('.overlay-search')
 
 searchButton.addEventListener('click', () => {
-    if (searchBar.classList.contains('search-open')) {
-        searchBar.classList.remove('search-open');
+    if (searchOverlay.classList.contains('search-open')) {
+        searchOverlay.classList.remove('search-open');
     }
     else {
-        searchBar.classList.add('search-open');
+        searchOverlay.classList.add('search-open');
     }
 })
 
 searchClose.addEventListener('click', () => {
-    searchBar.classList.remove('search-open');
+    searchOverlay.classList.remove('search-open');
 })
 
 //mobile button and mobile menu
@@ -168,7 +169,7 @@ if (document.querySelector('.post-content')) {
     }
 }
 
-const mainTitle = document.querySelector('.main-title');
+const mainTitle = document.querySelector('.cat-title');
 if (document.querySelector('.main-blog')) {
     if (!mainTitle && innerWidth > 600) {
         const p = document.querySelectorAll('.main-blog-img > img').forEach(el => {

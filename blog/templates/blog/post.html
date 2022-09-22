@@ -10,32 +10,34 @@
             <span><i class="bi bi-chevron-right"></i></span>
             <li>{{ post.title }}</li>
     </ul>
-    <a class="category" href="{{ post.category.get_absolute_url }}">{{post.category}}</a>
-    <h1>{{ post.title }}</h1>
+
     <div class="main-content">
         <section class="main-content-page">
             <ul class="main-blog">
-                <img class="thumbnail" src="{{post.photo.url}}" alt="img">
+
                     <div class="main-blog-detail">
-                        <div class="post-info">
-                            <p class="post-date"><strong>Published on </strong><br>{{ post.created_at|date:"F j, Y"}}</p>
-                            {% if next %}
-                            <div class="next">
-                                <a href="{{ next.get_absolute_url }}">
-                                    <h5 class="title-block">Up next</h5>
-                                    <img src="{{ next.photo.url }}" alt="img">
-                                    <h3>{{ next.title }}</h3>
-                                </a>
-                            </div>
-                            {% endif %}
-                        </div>
+<!--                        <div class="post-info">-->
+<!--                            <p class="post-date"><strong>Published on </strong><br>{{ post.created_at|date:"F j, Y"}}</p>-->
+<!--                            {% if next %}-->
+<!--                            <div class="next">-->
+<!--                                <a href="{{ next.get_absolute_url }}">-->
+<!--                                    <h5 class="title-block">Up next</h5>-->
+<!--                                    <img src="{{ next.photo.url }}" alt="img">-->
+<!--                                    <h3>{{ next.title }}</h3>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            {% endif %}-->
+<!--                        </div>-->
                         <div class="post-content">
+                            <h1>{{ post.title }}</h1>
+                            <p class="post-date">UPDATED {{ post.created_at|date:"F j, Y"}}</p>
+                            <img class="thumbnail" src="{{post.photo.url}}" alt="img">
                             {{post.content|safe}}
                         </div>
                     </div>
                     {% if posts %}
                     <h5 class="title-block-long">
-                        You may also like
+                        Read next
                     </h5>
                 {% for post in posts %}
                 <li>
