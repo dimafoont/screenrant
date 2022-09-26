@@ -50,9 +50,11 @@
                             {% endif %}
                         </div>
                         <div class="main-blog-content">
+                            <object>
                             <h2>{{ post.title }}</h2>
                             <p>{{ post.content|truncatewords_html:15|safe }}</p>
                             <span class="date">{{ post.created_at|date:"F j, Y"}}</span>
+                            </object>
                         </div>
                     </a>
                 </li>
